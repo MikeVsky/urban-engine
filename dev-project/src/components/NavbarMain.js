@@ -14,7 +14,9 @@ export default function NavbarMain() {
         style={{ maxHeight: '100px' }}
         navbarScroll
       >
-        <Nav.Link href="#action1">Home</Nav.Link>
+        <Nav.Link href="#action1">To-Do</Nav.Link>
+        <Nav.Link href="#action1">Notes</Nav.Link>
+        <Nav.Link href="#action1">Pomodoro</Nav.Link>
         <Nav.Link as={Link} to="/Profile">Profile</Nav.Link>
         
 

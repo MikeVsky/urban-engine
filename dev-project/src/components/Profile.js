@@ -7,6 +7,8 @@ export default function Profile() {
     const nameRef=useRef() 
     const {currentUser, logout} =  useAuth()
     const navigate = useNavigate()
+    document.title = "Profile"
+
    async function  handleLogout() {
 
         await logout()

@@ -3,6 +3,7 @@ import { Form, Button, Card, Alert, Container } from 'react-bootstrap'
 import {useAuth} from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
 
+
 export default function Signup() {
 
     const nameRef=useRef()
@@ -14,7 +15,7 @@ export default function Signup() {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
-
+    document.title = "Register"
     async function handleSubmit(e) {
         e.preventDefault()
     
