@@ -8,6 +8,9 @@ import Dashboard from "./Dashboard"
 import PrivateRoute from './PrivateRoute';
 import ForgotPassword from './ForgotPassword'
 import Profile from './Profile';
+import TodoPage from './TodoPage';
+import Timer from './Timer'
+import Notes from './Notes'
 function App() {
   return (
    
@@ -28,7 +31,9 @@ function App() {
           <Route path="/Login" element={<Login/>}/>
           <Route path="/Profile" element={<Profile/>}/>
           <Route path="/Forgot-password" element={<ForgotPassword/>}/>
-
+          <Route path="/TodoPage" element={<TodoPage/>}/>
+          <Route path="/Notes" element={<Notes/>}/>
+          <Route path="/Timer" element={<Timer/>}/>
           </Routes>
         </AuthProvider>
           </Router>

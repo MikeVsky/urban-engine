@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import AddTodo from './AddTodo'
 import Todo from './Todo'
 import app, {db} from '../firebase'
+import {Container} from "react-bootstrap"
 import {
   collection,
   query,
@@ -10,6 +11,7 @@ import {
   updateDoc,
   deleteDoc,
   where} from "firebase/firestore"
+import NavbarMain from './NavbarMain'
 
 export default function TodoPage() {
 
@@ -42,6 +44,11 @@ export default function TodoPage() {
     };
   return (
     <>
+    <NavbarMain/>
+     <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{minHeight: "30vh"}}>
+          <div className="w-100" style={{maxWidth: "400px"}}>
     <h2>What's to be done for today?</h2>
     <AddTodo />
        <div>
@@ -55,6 +62,8 @@ export default function TodoPage() {
           />
         ))}
       </div>
+      </div>
+      </Container>
     </>
   )
 }

@@ -2,6 +2,7 @@ import React, {useRef} from 'react'
 import {Card, Container, Button} from 'react-bootstrap'
 import {useAuth} from '../contexts/AuthContext'
 import  {Link, useNavigate} from 'react-router-dom'
+import NavbarMain from './NavbarMain'
 export default function Profile() {
 
     const nameRef=useRef() 
@@ -16,6 +17,7 @@ export default function Profile() {
     }
   return (
     <>
+    <NavbarMain/>
   <Container
       className="d-flex align-items-center justify-content-center"
       style={{minHeight: "100vh"}}>
@@ -26,15 +28,12 @@ export default function Profile() {
                     <strong>Email: </strong>{currentUser.email}
                     <Link to="/update-profile" className="btn btn-primary w-100 mt-3">Update profile</Link>
                     <div className="w-100 text-center mt-4">
-                    <Button type="link" onClick={handleLogout}>Log out</Button>
+                    <Button type="link" onClick={handleLogout} style={{backgroundColor: "red", borderColor: "red"}}>Log out</Button>
 
                     </div>
 
                 </Card.Body>
             </Card>
-            <div className="w-100 text-center mt-3">
-                <Link to="/" className='text-center'>Come back to the dashboard</Link>
-            </div>
           </div>
           </Container>
     </>

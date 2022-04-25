@@ -5,8 +5,7 @@ export default function NavbarMain() {
   return (
     <div>
      <Navbar bg="light" expand="lg">
-  <Container fluid>
-    <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+    <Navbar.Brand as={Link} to= "/">Study Valley</Navbar.Brand>
     <Navbar.Toggle aria-controls="navbarScroll" />
     <Navbar.Collapse id="navbarScroll">
       <Nav
@@ -14,16 +13,16 @@ export default function NavbarMain() {
         style={{ maxHeight: '100px' }}
         navbarScroll
       >
-        <Nav.Link href="#action1">To-Do</Nav.Link>
-        <Nav.Link href="#action1">Notes</Nav.Link>
-        <Nav.Link href="#action1">Pomodoro</Nav.Link>
+        <Nav.Link as={Link} to= "/TodoPage"> To-Do</Nav.Link>
+        <Nav.Link as={Link} to="/Notes">Notes</Nav.Link>
+        <Nav.Link as={Link} to="/Timer">Pomodoro</Nav.Link>
         <Nav.Link as={Link} to="/Profile">Profile</Nav.Link>
         
 
       </Nav>
       
     </Navbar.Collapse>
-  </Container>
+    
 </Navbar>
   </div>
   )
