@@ -11,6 +11,7 @@ import Profile from './Profile';
 import TodoPage from './TodoPage';
 import Timer from './Timer'
 import Notes from './Notes'
+import ProfileUpdate from './ProfileUpdate';
 function App() {
   return (
    
@@ -19,14 +20,12 @@ function App() {
         <Router>
         <AuthProvider>
           <Routes>
-          <Route path="/"
-
-                element={
+          <Route path="/" element={
                   <PrivateRoute>
                     <Dashboard />
-                  </PrivateRoute>
-                }
-              ></Route>
+                  </PrivateRoute>}/>
+          
+          <Route path="/Profile-update" element={<ProfileUpdate/>}/>
           <Route path="/Signup" element={<Signup/>}/>
           <Route path="/Login" element={<Login/>}/>
           <Route path="/Profile" element={<Profile/>}/>
