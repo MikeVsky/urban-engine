@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import AddTodo from './AddTodo'
 import Todo from './Todo'
 import app, {db} from '../firebase'
-import {Container} from "react-bootstrap"
+import {Card, Container} from "react-bootstrap"
 import {
   collection,
   query,
@@ -10,6 +10,7 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  deleteDocs,
   where} from "firebase/firestore"
 import NavbarMain from './NavbarMain'
 
@@ -42,14 +43,17 @@ export default function TodoPage() {
     const handleDelete = async (id) => {
       await deleteDoc(doc(db, "todos", id));
     };
+    
   return (
     <>
     <NavbarMain/>
      <Container
       className="d-flex align-items-center justify-content-center"
-      style={{minHeight: "30vh"}}>
+      style={{minHeight: "50vh"}}>
           <div className="w-100" style={{maxWidth: "400px"}}>
-    <h2>What's to be done for today?</h2>
+            <Card>
+              <Card.Body>
+              <h2>What's to be done for today?</h2>
     <AddTodo />
        <div>
         {todos.map((todo) => (
@@ -62,7 +66,12 @@ export default function TodoPage() {
           />
         ))}
       </div>
-      </div>
+      <div className="w-100 mt-3">
+     You have {todos.length} tasks
+     </div>
+              </Card.Body>
+            </Card>
+            </div>
       </Container>
     </>
   )

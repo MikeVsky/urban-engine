@@ -29,33 +29,34 @@ export default function ForgotPassword() {
     }
 
   return (
-      <>
+      
+             <div class="background-gradient">
       <Container
       className="d-flex align-items-center justify-content-center"
       style={{minHeight: "100vh"}}>
-          <div className="w-100" style={{maxWidth: "400px"}}>
+          <div className="w-100" style={{maxWidth: "500px"}}>
       <Card>
           <Card.Body>
             <h2 className='text-center mb-4'>Password Reset</h2>
+            <p>Enter your email and we will send you a link to reset your password. </p>
             {error && <Alert variant="danger">{error}</Alert>}
             {message && <Alert variant="success">{message}</Alert>}
 
               <Form onSubmit={handleSubmit}>
                   <Form.Group id="email">
-                      <Form.Label>Email</Form.Label>
-                      <Form.Control type="email" ref={emailRef} required />
+                      <Form.Control type="email" ref={emailRef} required placeholder='Email' />
                   </Form.Group>
-                  <Button disabled={loading} className='w-100 mt-4' type="submit">Reset Password</Button>
+                  <Button id ="btn-forgot" disabled={loading} className='w-100 mt-4' type="submit">Reset</Button>
               </Form>
               <div className="w-100  text-center mt-2">
-                  <Link to="/login">Login</Link>
+                  <Link to="/login" className='text-decoration-none'> Take me back</Link>
               </div>
           </Card.Body>
       </Card>
-      <div className='w-100 text-center mt-2'>
-Need an account? <Link to="/Signup">Sign up</Link></div>
+     
 </div>
 </Container>
- </>
+
+ </div>
   )
 }

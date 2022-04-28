@@ -1,11 +1,15 @@
 import React from 'react'
 import NavbarMain from './NavbarMain'
+import { Container } from 'react-bootstrap'
 
-export default function Timer() {
+const  Timer = ()=> {
+
   return (
     <div>
-        <NavbarMain/>
-        Timer
+      
+       
         </div>
   )
 }
+
+export default  Timer
