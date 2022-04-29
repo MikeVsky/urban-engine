@@ -65,7 +65,7 @@ export default function Login() {
           </Card.Body>
       </Card>
       <div class="form-nav-box">
-Need an account? <Link class="form-nav-link" to="/Signup">Sign up</Link></div>
+        Need an account? <Link class="form-nav-link" to="/Signup">Sign up</Link></div>
 </div>
 </Container>
 </div>

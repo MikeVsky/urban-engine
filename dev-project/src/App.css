@@ -1,8 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+
+.App{
+    width: 100vw;
+    height: 100vh;
+}
 *{
     font-family: 'Nunito', sans-serif;
+  min-height: 100%;
+
+}
+.switch{
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+#light{
+    background-color: azure;
+    color: black;
 }
 
+#dark{
+    background-color: black;
+    color: white;
+}
+
+#light .switch label{
+    color: black;
+}
+#dark .switch label{
+    color: Black;
+}
 .background-gradient{
     background: linear-gradient(#6eb8cf, #608cca);
 }
@@ -67,3 +95,9 @@ text-align: center;
     padding-top: 1em;
     justify-content: space-around;
 }
+
+.input-width{
+    width: 80%;
+}
+
+

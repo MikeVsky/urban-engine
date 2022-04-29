@@ -45,12 +45,12 @@ export default function TodoPage() {
     };
     
   return (
-    <>
+    <div>
     <NavbarMain/>
      <Container
       className="d-flex align-items-center justify-content-center"
       style={{minHeight: "50vh"}}>
-          <div className="w-100" style={{maxWidth: "400px"}}>
+          <div className="w-100" style={{maxWidth: "600px"}}>
             <Card>
               <Card.Body>
               <h2>What's to be done for today?</h2>
@@ -73,6 +73,6 @@ export default function TodoPage() {
             </Card>
             </div>
       </Container>
-    </>
+    </div>
   )
 }

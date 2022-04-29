@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, {useContext, useState} from 'react'
 import Signup from './Signup'
 import Login from './Login'
 import { AuthProvider } from '../contexts/AuthContext'
@@ -12,11 +12,19 @@ import TodoPage from './TodoPage'
 import Pomodoro from './Pomodoro'
 import Notes from './Notes'
 import ProfileUpdate from './ProfileUpdate'
+import { ThemeContext } from '../contexts/Theme'
+
+
+
 function App() {
+  const [{ theme }, toggleTheme] = useContext(ThemeContext);
+
   return (
    
       
-      <div >
+      <div id={theme} className="App">
+        
+         
         <Router>
         <AuthProvider>
           <Routes>

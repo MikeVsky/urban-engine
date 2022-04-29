@@ -33,14 +33,13 @@ export default function Profile() {
     return () => unsub()
   }, []);
 
-console.log(user)
    async function  handleLogout() {
 
         await logout()
         navigate("/login")
     }
   return (
-    <>
+    <div>
     <NavbarMain/>
   <Container
       className="d-flex align-items-center justify-content-center"
@@ -56,7 +55,7 @@ console.log(user)
                     <strong>Account created: </strong>{dateAdded}
                     <Link to="/Profile-update" className="btn btn-primary w-100 mt-3" id="btn-update">Update profile</Link>
                     <div className="w-100 text-center mt-4">
-                    <Button type="link" onClick={handleLogout} style={{backgroundColor: "red", borderColor: "red"}}>Log out</Button>
+                    <Button type="link" onClick={handleLogout} style={{backgroundColor: "tomato", borderColor: "tomato"}}>Log out</Button>
 
                     </div>
 
@@ -64,8 +63,6 @@ console.log(user)
             </Card>
           </div>
           </Container>
-    </>
+    </div>
   )
 }
-/*
-*/

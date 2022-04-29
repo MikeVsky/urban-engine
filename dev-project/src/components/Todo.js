@@ -20,6 +20,7 @@ export default function Todo({
     return (
         <div id="todo-result">
             <input
+            class="input-width"
             style={{textDecoration: todo.completed && "line-through"}}
             type= "text"
             value = {todo.title === "" ? newTitle : todo.title}
