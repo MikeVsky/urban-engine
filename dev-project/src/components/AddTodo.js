@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import app, {db} from '../firebase'
 import { collection, addDoc } from 'firebase/firestore'
+import {FaPlus} from "react-icons/fa"
+
 export default function AddTodo() {
     const [title, setTitle] = useState('')
 
@@ -14,15 +16,19 @@ export default function AddTodo() {
                 uid: app.auth().currentUser.uid
             })
         }
+        setTitle("")
     }
   return (
+      <div id="add-todo">
       <form onSubmit={handleSubmit}>
         <input 
+        height="100px"
         type="text"
         placeholder='Enter your task...'
         value={title}
         onChange={(e) => setTitle(e.target.value)}/>
-        <button>Add</button>
+        <button id="btn-add"><FaPlus size="1.3em" color='white'/></button>
       </form>
+      </div>
   )
 }

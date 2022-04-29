@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Navbar, Nav, Container} from "react-bootstrap"
+import {Navbar, Nav} from "react-bootstrap"
 export default function NavbarMain() {
   return (
     <div>
@@ -15,7 +15,7 @@ export default function NavbarMain() {
       >
         <Nav.Link as={Link} to= "/TodoPage"> To-Do</Nav.Link>
         <Nav.Link as={Link} to="/Notes">Notes</Nav.Link>
-        <Nav.Link as={Link} to="/Timer">Pomodoro</Nav.Link>
+        <Nav.Link as={Link} to="/Pomodoro">Pomodoro</Nav.Link>
         <Nav.Link as={Link} to="/Profile">Profile</Nav.Link>
         
 

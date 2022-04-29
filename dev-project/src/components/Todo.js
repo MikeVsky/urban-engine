@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-
+import { FaEdit, FaTrash, FaCheck } from "react-icons/fa";
 export default function Todo({
     todo,
     toggleComplete,
@@ -18,7 +18,7 @@ export default function Todo({
         }
     }
     return (
-        <div>
+        <div id="todo-result">
             <input
             style={{textDecoration: todo.completed && "line-through"}}
             type= "text"
@@ -27,20 +27,23 @@ export default function Todo({
             />
             <div>
                 <button
+                id="btn-done"
                 onClick={() => toggleComplete(todo)}> 
-                Done 
+                <FaCheck/>
                 </button>
             </div>
             <div>
                 <button
+                id="btn-edit"
                 onClick={() => handleEdit(todo, newTitle)}> 
-                Edit 
+                <FaEdit/>
                 </button>
             </div>
             <div>
                 <button
+                id="btn-delete"
                 onClick={() => handleDelete(todo.id)}> 
-                Delete
+                <FaTrash/>
                 </button>
             </div>
         </div>

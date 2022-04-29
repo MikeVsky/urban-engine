@@ -2,15 +2,16 @@
 import React from 'react'
 import Signup from './Signup'
 import Login from './Login'
-import { AuthProvider } from '../contexts/AuthContext';
+import { AuthProvider } from '../contexts/AuthContext'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Dashboard from "./Dashboard"
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './PrivateRoute'
 import ForgotPassword from './ForgotPassword'
-import Profile from './Profile';
-import TodoPage from './TodoPage';
-import Timer from './Timer'
+import Profile from './Profile'
+import TodoPage from './TodoPage'
+import Pomodoro from './Pomodoro'
 import Notes from './Notes'
+import ProfileUpdate from './ProfileUpdate'
 function App() {
   return (
    
@@ -19,21 +20,33 @@ function App() {
         <Router>
         <AuthProvider>
           <Routes>
-          <Route path="/"
-
-                element={
-                  <PrivateRoute>
-                    <Dashboard />
-                  </PrivateRoute>
-                }
-              ></Route>
+         
           <Route path="/Signup" element={<Signup/>}/>
           <Route path="/Login" element={<Login/>}/>
-          <Route path="/Profile" element={<Profile/>}/>
           <Route path="/Forgot-password" element={<ForgotPassword/>}/>
-          <Route path="/TodoPage" element={<TodoPage/>}/>
-          <Route path="/Notes" element={<Notes/>}/>
-          <Route path="/Timer" element={<Timer/>}/>
+          <Route path="/" element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>}/>
+          <Route path="/Profile-update" element={
+           <PrivateRoute>
+          <ProfileUpdate/>
+           </PrivateRoute>}/>
+          <Route path="/Profile" element={
+          <PrivateRoute>
+          <Profile/>
+          </PrivateRoute>}/>
+         
+          <Route path="/TodoPage" element={ 
+          <PrivateRoute>
+          <TodoPage/>
+          </PrivateRoute>}/>
+          <Route path="/Notes" element={ <PrivateRoute>
+          <Notes/>
+          </PrivateRoute>}/>
+          <Route path="/Pomodoro" element={ <PrivateRoute>
+          <Pomodoro/>
+          </PrivateRoute>}/>
           </Routes>
         </AuthProvider>
           </Router>

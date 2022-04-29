@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+*{
+    font-family: 'Nunito', sans-serif;
+}
+
+.background-gradient{
+    background: linear-gradient(#6eb8cf, #608cca);
+}
+
+#btn-register{
+    background-color: #6eb8cf;
+    border-color: #6eb8cf;
+}
+#btn-login{
+    background-color: #6eb8cf;
+    border-color: #6eb8cf;
+}
+
+#btn-forgot{
+    background-color: #6eb8cf;
+    border-color: #6eb8cf;
+}
+#btn-update{
+    background-color: #6eb8cf;
+    border-color: #6eb8cf;
+}
+
+#btn-add{
+    background-color:lightseagreen;
+    border:none;
+    margin-left: 1em;
+}
+#btn-done{
+    background-color:lightgreen;
+    border: none;
+}
+
+#btn-edit{
+    background-color:#6eb8cf;
+    border: none;
+}
+#btn-delete{
+background-color: tomato;
+border: none;
+}
+.form-nav-box{
+    text-align:center;
+    color: white;
+    padding-top:0.5em;
+}
+
+.form-nav-link{
+    color:black;
+    text-decoration: none;
+
+}
+
+#add-todo{
+text-align: center;
+}
+
+#todo-result{
+    display: flex;
+    align-items:center;
+ 
+    flex-direction: row;
+    padding-top: 1em;
+    justify-content: space-around;
+}
