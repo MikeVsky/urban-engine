@@ -10,12 +10,11 @@ import {
   doc,
   updateDoc,
   deleteDoc,
-  deleteDocs,
   where} from "firebase/firestore"
 import NavbarMain from './NavbarMain'
 
 export default function TodoPage() {
-
+    
     const [todos, setTodos] =useState([])
     document.title = "To do"
 
@@ -52,8 +51,8 @@ export default function TodoPage() {
       style={{minHeight: "50vh"}}>
           <div className="w-100" style={{maxWidth: "600px"}}>
             <Card>
-              <Card.Body>
-              <h2>What's to be done for today?</h2>
+              <Card.Body className="shadow p-3 rounded">
+              <h2 className='h2-align'> What's to be done for today?</h2>
     <AddTodo />
        <div>
         {todos.map((todo) => (

@@ -1,37 +1,38 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import {Card, Container, Button} from 'react-bootstrap'
 import {useAuth} from '../contexts/AuthContext'
 import  {Link, useNavigate} from 'react-router-dom'
 import app, {db} from '../firebase'
 import NavbarMain from './NavbarMain'
+import { ThemeContext } from '../contexts/Theme'
 import {
   collection,
 query, where, onSnapshot
  } from "firebase/firestore"
 
 export default function Profile() {
+    const [{ theme }, toggleTheme] = useContext(ThemeContext);
     const {currentUser, logout} =  useAuth()
     const navigate = useNavigate()
     document.title = "Profile"
-    const[user, setUser]=useState()
     const userRef = collection(db, 'users')
     const q = query(userRef, where ("uid", "==", app.auth().currentUser.uid))
     const[userName, setUserName] = useState("")
     const[dateAdded, setDateAdded] = useState()
+
     useEffect(() => {
     const unsub = onSnapshot(q, (querySnapshot) => {
-      let userss = [];
+      let presentUser = [];
 
-      
       querySnapshot.forEach((doc) => {
+        
         setUserName(doc.get("name"))
         setDateAdded(doc.get("dateAdded").toDate().toString().slice(4, 15))
-        userss.push({ ...doc.data(), id: doc.id });
+        presentUser.push({ ...doc.data(), id: doc.id });
       })
-      setUser(userss)
     });
     return () => unsub()
-  }, []);
+  }, );
 
    async function  handleLogout() {
 
@@ -46,7 +47,7 @@ export default function Profile() {
       style={{minHeight: "50vh"}}>
           <div className="w-100" style={{maxWidth: "400px"}}>
             <Card>
-                <Card.Body>
+                <Card.Body className="profile-bg shadow p-3  bg-white rounded ">
                     <h2 className="text-center mb-4">Profile</h2>
                     <strong>Name: </strong>{userName}
                     <br/>

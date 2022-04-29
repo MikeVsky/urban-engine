@@ -7,10 +7,12 @@ export default function Todo({
     handleEdit,
 }) {
     const [newTitle, setNewTitle] =useState(todo.title)
+    const [compNumber, setCompNumber] = useState(0)
     const handleChange = (e) => {
         e.preventDefault()
         if (todo.complete === true){
             setNewTitle(todo.title)
+            setCompNumber(compNumber+1)
         }
         else {
             todo.title = "";
@@ -20,7 +22,7 @@ export default function Todo({
     return (
         <div id="todo-result">
             <input
-            class="input-width"
+            className="input-width input-bg"
             style={{textDecoration: todo.completed && "line-through"}}
             type= "text"
             value = {todo.title === "" ? newTitle : todo.title}

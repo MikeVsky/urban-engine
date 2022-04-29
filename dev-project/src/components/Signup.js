@@ -33,7 +33,8 @@ export default function Signup() {
                 name: nameRef.current.value,
                 uid: app.auth().currentUser.uid,
                 dateAdded: new Date(),
-                active
+                mode: "light",
+                active: true
             })
             navigate("/login")
         } catch{

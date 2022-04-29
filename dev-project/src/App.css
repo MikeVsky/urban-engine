@@ -16,7 +16,7 @@
     align-items: center;
 }
 #light{
-    background-color: azure;
+    background-color:#fafafa;
     color: black;
 }
 
@@ -24,7 +24,33 @@
     background-color: black;
     color: white;
 }
+.h2-align{
+    text-align: center;
+}
 
+.title-bg{
+    background-color: #f0efeb;
+    border-radius: 1em;
+    padding: 0.5em;
+    border:none;
+}
+#light .profile-bg{
+    background-color: #bcd4e6;
+}
+
+#light .navbarbg{
+    background-color: #bcd4e6;
+    }
+    #dark .navbarbg{
+        background-color: #608cca;
+    }
+#light .input-bg{
+background-color: #d6e2e9;
+border-radius: 1em;
+    padding: 0.5em;
+    border:none;
+
+}
 #light .switch label{
     color: black;
 }
@@ -49,17 +75,22 @@
     border-color: #6eb8cf;
 }
 #btn-update{
-    background-color: #6eb8cf;
-    border-color: #6eb8cf;
+    background-color: #a0ced9;
+    border-color: #f0efeb;
+
 }
 
 #btn-add{
-    background-color:lightseagreen;
-    border:none;
-    margin-left: 1em;
+    background-color:#99c1de;
+    border: none;
+    border-radius: 0.75em;
+    padding:0.5em;
+    margin-left: 0.5em;
+    width: 3em;
+
 }
 #btn-done{
-    background-color:lightgreen;
+    background-color:#cdeac0;
     border: none;
 }
 
@@ -101,3 +132,16 @@ text-align: center;
 }
 
 
+.time-sets{
+    display:grid;
+    grid-template-columns:50px 200px 50px ;
+    justify-items: center;
+    align-items: center;
+}
+.dark-toggle{
+    display: flex;
+    align-items: center;
+}
+.dark-toggle label{
+padding: 0.5em;
+}

@@ -30,7 +30,7 @@ export default function Login() {
     
 
   return (
-       <div class="background-gradient">
+       <div className="background-gradient">
       <Container
       className="d-flex align-items-center justify-content-center"
       style={{minHeight: "100vh"}}>
@@ -64,8 +64,8 @@ export default function Login() {
         </div>
           </Card.Body>
       </Card>
-      <div class="form-nav-box">
-        Need an account? <Link class="form-nav-link" to="/Signup">Sign up</Link></div>
+      <div className="form-nav-box">
+        Need an account? <Link className="form-nav-link" to="/Signup">Sign up</Link></div>
 </div>
 </Container>
 </div>
