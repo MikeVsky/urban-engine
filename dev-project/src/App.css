@@ -21,11 +21,16 @@
 }
 
 #dark{
-    background-color: black;
+    background-color: #616E7C;
     color: white;
 }
-.h2-align{
+#light .h2-align{
     text-align: center;
+}
+
+#dark .h2-align{
+    text-align: center;
+    color: black;
 }
 
 .title-bg{
@@ -42,7 +47,8 @@
     background-color: #bcd4e6;
     }
     #dark .navbarbg{
-        background-color: #608cca;
+        background-color: #121212;
+        color: white;
     }
 #light .input-bg{
 background-color: #d6e2e9;
@@ -116,9 +122,16 @@ border: none;
 .link-decoration{
 text-decoration: none;
 }
+#dark .nav-text{
+color: white ;
+border-color: white;
+}
 #add-todo{
 text-align: center;
 }
+.CircularProgressbar-path {
+    stroke: red;
+  }
 
 #todo-result{
     display: flex;

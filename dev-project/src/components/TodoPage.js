@@ -42,7 +42,7 @@ export default function TodoPage() {
     const handleDelete = async (id) => {
       await deleteDoc(doc(db, "todos", id));
     };
-    
+    console.log([todos])
   return (
     <div>
     <NavbarMain/>

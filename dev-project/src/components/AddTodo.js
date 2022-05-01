@@ -4,7 +4,7 @@ import { collection, addDoc } from 'firebase/firestore'
 import {FaPlus} from "react-icons/fa"
 
 export default function AddTodo() {
-    const [title, setTitle] = useState('')
+    const [title, setTitle] = useState("")
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,7 +22,7 @@ export default function AddTodo() {
       <div id="add-todo">
       <form onSubmit={handleSubmit}>
         <input 
-        className='title-bg'
+        className=''
         height="100px"
         type="text"
         placeholder='Enter your task...'

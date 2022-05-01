@@ -32,8 +32,9 @@ export default function Signup() {
             await addDoc(collection(db, "users"),{
                 name: nameRef.current.value,
                 uid: app.auth().currentUser.uid,
+                score: 0,
+                level: 0,
                 dateAdded: new Date(),
-                mode: "light",
                 active: true
             })
             navigate("/login")
@@ -45,7 +46,7 @@ export default function Signup() {
      
 
   return (
-      <div class="background-gradient">
+      <div className="background-gradient">
       <Container
       className="d-flex align-items-center justify-content-center"
       style={{minHeight: "100vh", background: "linear-gradient(#6eb8cf, #608cca)"}}>
@@ -76,8 +77,8 @@ export default function Signup() {
 
           </Card.Body>
       </Card>
-      <div class='form-nav-box'>
-        Already a member? <Link to="/Login" class="test">Login</Link>
+      <div className='form-nav-box'>
+        Already a member? <Link to="/Login" className="test">Login</Link>
       </div>
       </div>
       </Container>

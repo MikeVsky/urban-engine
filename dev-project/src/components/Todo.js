@@ -1,11 +1,14 @@
 import React, {useState} from "react"
 import { FaEdit, FaTrash, FaCheck } from "react-icons/fa";
+
+
 export default function Todo({
     todo,
     toggleComplete,
     handleDelete,
     handleEdit,
 }) {
+
     const [newTitle, setNewTitle] =useState(todo.title)
     const [compNumber, setCompNumber] = useState(0)
     const handleChange = (e) => {
