@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert } from "react-bootstrap"
+import { Form, Button, Card, Alert,Container } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import { Link, useNavigate } from 'react-router-dom'
-
+import NavbarMain from "./NavbarMain"
 export default function ProfileUpdate() {
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -42,7 +42,12 @@ export default function ProfileUpdate() {
   }
 
   return (
-    <>
+    <div>
+      <NavbarMain />
+    <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{minHeight: "50vh"}}>
+          <div className="w-100" style={{maxWidth: "400px"}}>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
@@ -73,15 +78,19 @@ export default function ProfileUpdate() {
                 placeholder="Leave blank to keep the same"
               />
             </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
+            <div className="w-100 text-center mt-4">
+            <Button disabled={loading} className="w-100" id ="btn-update" type="submit">
               Update
             </Button>
+            </div>
           </Form>
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        <Link to="/">Go back</Link>
+        <Link to="/Profile" className="link-decoration">Go back</Link>
       </div>
-    </>
+      </div>
+      </Container>
+    </div>
   )
 }

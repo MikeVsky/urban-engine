@@ -1,19 +1,15 @@
-import React, {createContext, useEffect, useState} from 'react'
-import {
-  collection,
-query, where, onSnapshot
- } from "firebase/firestore"
+import React, {createContext, useState} from 'react'
 
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
 
-  const [theme, setTheme] =useState('light')
+  const [theme, setTheme] =useState(localStorage.getItem('theme'))
   
   const toggleTheme = () => {
    setTheme((curr) => (curr=== 'light' ? 'dark' :'light'))}
-
-  
+    localStorage.setItem('theme', theme )
+    
 
   
   return (

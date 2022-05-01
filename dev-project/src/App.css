@@ -113,7 +113,9 @@ border: none;
     text-decoration: none;
 
 }
-
+.link-decoration{
+text-decoration: none;
+}
 #add-todo{
 text-align: center;
 }
@@ -137,6 +139,18 @@ text-align: center;
     grid-template-columns:50px 200px 50px ;
     justify-items: center;
     align-items: center;
+}
+.time-display{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.time-disp{
+    font-size: 20px;
+}
+.time-buttons{
+    display: flex;
 }
 .dark-toggle{
     display: flex;
