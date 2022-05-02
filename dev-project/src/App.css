@@ -6,7 +6,6 @@
 }
 *{
     font-family: 'Nunito', sans-serif;
-  min-height: 100%;
 
 }
 .switch{
@@ -171,4 +170,68 @@ text-align: center;
 }
 .dark-toggle label{
 padding: 0.5em;
+}
+
+
+.note{
+    background-color: #6eb8cf;
+    min-height: 150px;
+    border-radius: 5px;
+    display: flex;
+    padding: 1rem;
+    flex-direction:column;
+    justify-content: space-between;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.note-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.save-footer{
+    display: flex;
+    justify-content: end;
+}
+
+.notes-list{
+
+display: grid;
+grid-gap: 1rem;
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+}
+
+.note.new{
+    background-color: #b8e0d2;
+    color: black;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+textarea{
+    border: none;
+    resize: none;
+    background-color: #b8e0d2;
+ 
+}
+.title-placeholder::placeholder{
+    color: #121212;
+    font-size: 1.5em;
+}
+.text-placeholder{
+    padding:1em;
+}
+
+
+textarea:focus{
+    outline: none;
+}
+
+.save{
+    background-color: #809BCE;
+    border: none;
+    border-radius: 10px;
 }

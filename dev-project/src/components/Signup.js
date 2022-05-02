@@ -24,7 +24,9 @@ export default function Signup() {
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
           return setError("Passwords do not match")
         }
-    
+        else if (passwordRef.current.value.length <= 5){
+            return setError("Password need to have atleast 6 characters")
+        }
         try{
             setError('')
             setLoading(true)
@@ -32,15 +34,15 @@ export default function Signup() {
             await addDoc(collection(db, "users"),{
                 name: nameRef.current.value,
                 uid: app.auth().currentUser.uid,
-                score: 0,
-                level: 0,
                 dateAdded: new Date(),
-                active: true
+                active: active
             })
             navigate("/login")
-        } catch{
-            setError('Failed to create an account')
+        } catch(err){
+            if (err.code ==="auth/email-already-in-use")
+            setError('Email is already in use')
         }
+        
         setLoading(false)
     }
      

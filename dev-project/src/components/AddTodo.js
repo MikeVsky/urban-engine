@@ -22,7 +22,6 @@ export default function AddTodo() {
       <div id="add-todo">
       <form onSubmit={handleSubmit}>
         <input 
-        className=''
         height="100px"
         type="text"
         placeholder='Enter your task...'

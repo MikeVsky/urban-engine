@@ -17,14 +17,25 @@ export default function Login() {
    
        e.preventDefault()
     
+
         try{
             setError('')
             setLoading(true)
             await login(emailRef.current.value, passwordRef.current.value)
             navigate("/")
-        } catch{
-            setError('Failed to sign in')
+        } catch (err){
+            if (err.code ==='auth/user-not-found'){
+                setError('User with given email doesn\'t exist')
+            }
+         
+
+            if (err.code === 'auth/wrong-password'){
+                setError('Wrong password')
+            }
+
         }
+
+
         setLoading(false)
     }
     

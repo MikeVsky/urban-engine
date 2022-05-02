@@ -10,7 +10,7 @@ import ForgotPassword from './ForgotPassword'
 import Profile from './Profile'
 import TodoPage from './TodoPage'
 import Pomodoro from './Pomodoro'
-import Notes from './Notes'
+import NotesPage from './NotePage'
 import ProfileUpdate from './ProfileUpdate'
 import { ThemeContext } from '../contexts/Theme'
 
@@ -27,6 +27,7 @@ function App() {
          
         <Router>
         <AuthProvider>
+          
           <Routes>
          
           <Route path="/Signup" element={<Signup/>}/>
@@ -50,12 +51,13 @@ function App() {
           <TodoPage/>
           </PrivateRoute>}/>
           <Route path="/Notes" element={ <PrivateRoute>
-          <Notes/>
+          <NotesPage/>
           </PrivateRoute>}/>
           <Route path="/Pomodoro" element={ <PrivateRoute>
           <Pomodoro/>
           </PrivateRoute>}/>
           </Routes>
+     
         </AuthProvider>
           </Router>
       </div>
