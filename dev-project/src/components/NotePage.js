@@ -43,7 +43,7 @@ export default function NotePage() {
 
       <NavbarMain />
       <Container className=" align-items-center "
-        style={{ minHeight: "100vh" }}>
+       >
         <AddNote />
       <div className='notes-list'>
       {notes.map((note) => (
@@ -54,10 +54,6 @@ export default function NotePage() {
                   />
                 ))}
       </div>
-       
-       
-
-
       </Container>
 
     </div>

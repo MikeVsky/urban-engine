@@ -31,21 +31,19 @@ export default function Todo({
             value = {todo.title === "" ? newTitle : todo.title}
             onChange={handleChange}
             />
-            <div>
+            <div className="todo-buttons">
                 <button
                 id="btn-done"
                 onClick={() => toggleComplete(todo)}> 
-                <FaCheck/>
+                <FaCheck />
                 </button>
-            </div>
-            <div>
+        
                 <button
                 id="btn-edit"
                 onClick={() => handleEdit(todo, newTitle)}> 
                 <FaEdit/>
                 </button>
-            </div>
-            <div>
+         
                 <button
                 id="btn-delete"
                 onClick={() => handleDelete(todo.id)}> 

@@ -6,10 +6,9 @@ import 'react-circular-progressbar/dist/styles.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiFillStar } from "react-icons/ai";
-import app, { db  } from '../firebase'
- 
-import { doc, setDoc } from "firebase/firestore"; 
+import app, { db } from '../firebase'
 
+import { doc, getDoc, setDoc, onSnapshot, collection, query, where } from "firebase/firestore";
 
 
 export default function Pomodoro() {
@@ -17,20 +16,21 @@ export default function Pomodoro() {
   document.title = "Pomodoro"
   const [displayTime, setDisplayTime] = useState(3)
   const [totalTime, setTotalTime] = useState(3)
-  const [shortBrake, setShortBrake] = useState(3)
+  const [shortBrake, setShortBrake] = useState(5)
   const [sessionTime, setSessionTime] = useState(3)
   const [timerOn, setTimerOn] = useState(false)
-  const [totalScore, setTotalScore] = useState(0)
-  const [level, setLevel] = useState(0)
+  const [totalScore, setTotalScore] = useState(1)
+  const [totalLevel, setTotalLevel] = useState(0)
   const [wasStopped, setWasStopped] = useState(false)
+  const [onBrake, setOnBrake] = useState(false)
   const value = displayTime / totalTime
   const [barColor, setBarColor] = useState('62, 152, 199')
-  
-      await setDoc(doc(db, "cities", "LA"), {
-        name: "Los Angeles",
-        state: "CA",
-        country: "USA"
-      });
+
+  const userScoreRef = collection(db, 'userScore')
+  const q = query(userScoreRef, where("uid", "==", app.auth().currentUser.uid))
+
+
+
 
   const notify = () => toast('Good job with your task, you earn yourself a star', {
     position: "top-center",
@@ -40,8 +40,7 @@ export default function Pomodoro() {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-  });;
-
+  })
 
   const formatTime = (time) => {
     let minutes = Math.floor(time / 60)
@@ -53,9 +52,10 @@ export default function Pomodoro() {
 
   function handleSession() {
     if (!timerOn) {
-      setDisplayTime(25 * 60)
-      setSessionTime(25 * 60)
-      setTotalTime(25 * 60)
+      setWasStopped(false)
+      setDisplayTime(3)
+      setSessionTime(3)
+      setTotalTime(3)
       setBarColor('62, 152, 199')
     }
 
@@ -63,16 +63,19 @@ export default function Pomodoro() {
 
   function handleShort() {
     if (!timerOn) {
-      setDisplayTime(5 * 60)
-      setShortBrake(5 * 60)
-      setTotalTime(5 * 60)
+      setWasStopped(false)
+      setDisplayTime(5)
+      setShortBrake(5)
+      setTotalTime(5)
       setBarColor('184, 224, 210')
+      setOnBrake(true)
     }
 
   }
 
   function handleLong() {
     if (!timerOn) {
+      setWasStopped(false)
       setDisplayTime(15 * 60)
       setTotalTime(15 * 60)
       setBarColor('184, 224, 210')
@@ -89,19 +92,25 @@ export default function Pomodoro() {
         date = new Date().getTime()
         if (date > nextDate) {
           setDisplayTime((prev) => {
-            if (prev <= 1) {
+            if (prev <= 1 && !onBrake) {
               clearInterval(localStorage.getItem('interval-id'))
               setTimerOn(false)
-              handleReset()
-
+              handleShort()
             }
-            if (sessionTime >= 3 && prev <= 1 && !wasStopped) {
-             
+            if ((prev <= 1 && onBrake)) {
+              setOnBrake(false)
+              clearInterval(localStorage.getItem('interval-id'))
+              setTimerOn(false)
+              handleSession()
+            }
+            if (sessionTime >= 2 && prev <= 1 && !onBrake) {
+
               addScore()
               notify()
-              handleReset()
+              handleShort()
               addScore()
               addLevel()
+
             }
             document.title = formatTime(prev - 1)
             return prev - 1
@@ -130,20 +139,25 @@ export default function Pomodoro() {
     setWasStopped(false)
   }
 
+  function updateScore() {
+    setDoc(doc(db, "usersScore", app.auth().currentUser.uid), {
+      uid: app.auth().currentUser.uid,
+      score: totalScore + 1,
+      level: totalLevel
+    });
+  }
+  function addScore() {
 
-  function addScore(){
-
-    
-    setTotalScore(totalScore+1)
-     db.collection("users").doc(doc.id)
-   
+    setTotalScore(totalScore + 1)
+    updateScore()
   }
   function addLevel() {
     if (totalScore >= 3) {
       setTotalScore(0)
-      setLevel(level + 1)
+      setTotalLevel(totalLevel + 1)
+      updateScore()
     }
-    return level
+    return totalLevel
   }
 
   function SwitchCase(props) {
@@ -162,17 +176,16 @@ export default function Pomodoro() {
   return (
     <div>
       <NavbarMain />
-      <Container className="d-flex align-items-center justify-content-center"
-        style={{ minHeight: "60vh" }}>
+      <Container className="d-flex align-items-center justify-content-center mt-5">
         <div className='time-display'>
-          <h2>Pomodoro</h2>
+          <h1 className='text-center'>Pomodoro</h1>
           <div className='time-buttons'>
             <button onClick={handleSession}>Work</button>
             <button onClick={handleShort}>Short</button>
             <button onClick={handleLong}>Long</button>
           </div>
 
-          <strong>Plan your time</strong>
+          <strong className='text-center mt-3'>Plan your time wisely</strong>
 
 
           <CircularProgressbar value={value} maxValue={1} text={`${Math.round(value * 100)}%`}
@@ -180,19 +193,18 @@ export default function Pomodoro() {
           >
 
           </CircularProgressbar>
-          <div><h2>{formatTime(displayTime)}</h2></div>
+          <div><h2 className='text-center'>{formatTime(displayTime)}</h2></div>
 
-          <div>
+          <div className='time-buttons'>
             <button onClick={handleStart}>Start</button>
             <button onClick={handleStop}>Stop</button>
             <button onClick={handleReset}>Restart</button>
 
 
           </div>
-          <SwitchCase value={totalScore} />
-        </div>
-        <div>
-          level: {level}
+          <div className='text-center mt-4'> <SwitchCase value={totalScore} /></div>
+
+          <strong className='text-center mt-4 mb-3' >level: {totalLevel}</strong>
         </div>
         <ToastContainer />
       </Container>

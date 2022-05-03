@@ -11,7 +11,6 @@ query, where, onSnapshot
  } from "firebase/firestore"
 
 export default function Profile() {
-    const [{ theme }, toggleTheme] = useContext(ThemeContext);
     const {currentUser, logout} =  useAuth()
     const navigate = useNavigate()
     document.title = "Profile"
@@ -47,13 +46,15 @@ export default function Profile() {
       style={{minHeight: "50vh"}}>
           <div className="w-100" style={{maxWidth: "400px"}}>
             <Card>
-                <Card.Body className="profile-bg shadow p-3  bg-white rounded ">
+                <Card.Body className="shadow p-3 ">
+                  <div className='profile-text'>
                     <h2 className="text-center mb-4">Profile</h2>
                     <strong>Name: </strong>{userName}
                     <br/>
                     <strong>Email: </strong>{currentUser.email}
                     <br />
                     <strong>Account created: </strong>{dateAdded}
+                    </div>
                     <Link to="/Profile-update" className="btn btn-primary w-100 mt-3" id="btn-update">Update profile</Link>
                     <div className="w-100 text-center mt-4">
                     <Button type="link" onClick={handleLogout} style={{backgroundColor: "tomato", borderColor: "tomato"}}>Log out</Button>

@@ -37,6 +37,7 @@ export default function Signup() {
                 dateAdded: new Date(),
                 active: active
             })
+
             navigate("/login")
         } catch(err){
             if (err.code ==="auth/email-already-in-use")

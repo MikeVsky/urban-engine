@@ -48,9 +48,8 @@ export default function TodoPage() {
       <NavbarMain />
       <Container
         className="d-flex align-items-center justify-content-center"
-        style={{ minHeight: "50vh" }}>
-        <div className="w-100" style={{ maxWidth: "600px" }}>
-          <Card>
+        >
+          <Card className='mt-5'>
             <Card.Body className="shadow p-3 rounded">
               <h2 className='h2-align'> What's to be done for today?</h2>
               <AddTodo />
@@ -70,7 +69,7 @@ export default function TodoPage() {
               </div>
             </Card.Body>
           </Card>
-        </div>
+        
       </Container>
     </div>
   )
