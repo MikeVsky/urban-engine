@@ -4,13 +4,13 @@ import { useAuth } from '../contexts/AuthContext'
 import { Link } from 'react-router-dom'
 
 export default function ForgotPassword() {
-
+    document.title = "Forgot my password"
     const emailRef = useRef()
     const { resetPassword } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
-    document.title = "Forgot my password"
+    
 
     async function handleSubmit(e) {
 
@@ -21,24 +21,30 @@ export default function ForgotPassword() {
             setError('')
             setLoading(true)
             await resetPassword(emailRef.current.value)
-            setMessage('Check your  inbox for further information')
-        } catch {
-            setError('Failed to reset password')
+            setMessage('Check your inbox for further information')
+        } catch (err){
+            
+            if (err.code ==="auth/invalid-email"){
+                setError('Email is in wrong format')
+            }
+            if (err.code ==="auth/user-not-found"){
+                setError('There are not user with given e-mail')
+            }  
         }
         setLoading(false)
     }
 
     return (
 
-        <div class="background-gradient">
+        <div className="background-gradient">
             <Container
                 className="d-flex align-items-center justify-content-center"
                 style={{ minHeight: "100vh" }}>
-                <div className="w-100" style={{ maxWidth: "500px" }}>
+                <div className="w-100 black-text" style={{ maxWidth: "500px" }}>
                     <Card>
                         <Card.Body>
                             <h2 className='text-center mb-4'>Password Reset</h2>
-                            <p>Enter your email and we will send you a link to reset your password. </p>
+                            <p className='text-center'>Enter your email and we will send you a link to reset your password.</p>
                             {error && <Alert variant="danger">{error}</Alert>}
                             {message && <Alert variant="success">{message}</Alert>}
 
@@ -49,7 +55,7 @@ export default function ForgotPassword() {
                                 <Button id="btn-forgot" disabled={loading} className='w-100 mt-4' type="submit">Reset</Button>
                             </Form>
                             <div className="w-100  text-center mt-2">
-                                <Link to="/login" className='text-decoration-none'> Take me back</Link>
+                                <Link to="/login" className='text-decoration-none'>Take me back</Link>
                             </div>
                         </Card.Body>
                     </Card>

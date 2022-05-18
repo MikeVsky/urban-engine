@@ -2,7 +2,7 @@
 
 .App {
     width: 100vw;
-    height: 100vh;
+   min-height: 100vh;
 }
 
 * {
@@ -23,17 +23,25 @@
 }
 
 #dark {
-    background-color: #616E7C;
+    background-color: #161618;
     color: white;
 }
 
+#dark .hamburger-toggle{
+
+border-color: white;
+}
+#light .hamburger-toggle span{
+    color:white;
+    border-color: white;
+    }
 #light .h2-align {
     text-align: center;
 }
 
 #dark .h2-align {
     text-align: center;
-    color: black;
+    color: white;
 }
 
 .title-bg {
@@ -45,19 +53,27 @@
 
 #light .profile-bg {
     background-color: #bcd4e6;
+    box-shadow: 5px;
 }
 
 #light .navbarbg {
-    background-color: #bcd4e6;
+    background: linear-gradient(90deg, rgba(0,140,255) 0%, rgba(0,156,173) 100%);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
 }
 
+#dark .card-bg{
+    background-color: #727272;
+        border-color: transparent;
+
+}
 #dark .navbarbg {
-    background-color: #121212;
+    background-color: #212124;
     color: white;
 }
 
 #light .input-bg {
-    background-color: #d6e2e9;
+    background-color: #b7d7f4;
     border-radius: 1em;
     padding: 0.5em;
     border: none;
@@ -65,11 +81,19 @@
 }
 
 #dark .input-bg {
-    background-color: #d6e2e9;
+    background-color: rgb(218, 218, 218);
     border-radius: 1em;
     padding: 0.5em;
     border: none;
 
+}
+
+#light .date{
+   color:white;
+}
+
+#dark .date{
+    color:#818181;
 }
 #light .switch label {
     color: black;
@@ -99,19 +123,28 @@
 }
 
 #btn-update {
-    background-color: #a0ced9;
-    border-color: #f0efeb;
+    background-color: #559cad;
+    background-color: #559cad;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 0.5em;
 
 }
 
-#btn-add {
-    background-color: #99c1de;
+ #btn-add {
+    background-color: #4997cf;
     border: none;
     border-radius: 0.75em;
     padding: 0.5em;
     margin-left: 0.5em;
     width: 3em;
 
+}
+.profile-buttons{
+    display: flex;
+    justify-content: space-evenly;
+    
 }
 
 #btn-done {
@@ -120,6 +153,7 @@
     height: 2em;
     width: 2em;
     border-radius: 5px;
+    
 }
 
 #btn-edit {
@@ -128,6 +162,8 @@
     height: 2em;
     width: 2em;
     border-radius: 5px;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 
 }
 
@@ -138,9 +174,15 @@
     width: 2em;
     border-radius: 5px;
 }
+
+#btn-logout{
+    background-color: rgba(0,156,255);
+    border-color: rgba(0,156,255);
+    width:8em;
+}
 .todo-buttons{
     display: flex;
-    padding: 1em;
+    padding: 0.25em;
 
 }
 .form-nav-box {
@@ -164,26 +206,36 @@
     border-color: white;
 }
 
+#light .brand-logo{
+height: 50%;
+}
 #add-todo {
     text-align: center;
     padding-bottom: 1em;
     padding-top: 1em;
 }
 
-#dark .profile-text{
+.black-text{
     color: black;
 }
-#add-todo  input{
+#light #add-todo input{
     padding: 0.5em;
     border-radius: 5px;
-    background-color:#6eb8cf;
-    border-color: #6eb8cf;
+    background-color:#2a9df0;
     border: none;
-    width: 300px;
+    min-width: 55vw;
 }
-#add-todo  input::placeholder{
+#dark #add-todo input{
+    padding: 0.5em;
+    border-radius: 5px;
+    background-color:rgb(218, 218, 218);
+    border: none;
+    width: 55vw;
+}
+ #add-todo  input::placeholder{
 color: black;
 }
+
 .CircularProgressbar-path {
     stroke: red;
 }
@@ -191,14 +243,13 @@ color: black;
 #todo-result {
     display: flex;
     align-items: center;
-
     flex-direction: row;
     padding-top: 1em;
     justify-content: space-around;
 }
 
 .input-width {
-    width: 80%;
+    width: 50vw;
 }
 
 
@@ -220,6 +271,7 @@ color: black;
 }
 
 .time-buttons {
+    margin-top: 1em;
     display: flex;
 
     border-radius: 10px;
@@ -232,7 +284,7 @@ color: black;
     border-radius: 10px;
     width: 5em;
     height: 2em;
-    box-shadow: 5px 5px #888888;
+    background-color:#6eb8cf ;
 }
 
 .dark-toggle {
@@ -244,9 +296,19 @@ color: black;
     padding: 0.5em;
 }
 
-
-.note {
-    background-color: #6eb8cf;
+#light .note {
+    background-color: #77bed8;
+    min-height: 150px;
+    border-radius: 5px;
+    display: flex;
+    padding: 2em;
+    flex-direction: column;
+    justify-content: space-between;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+#dark .note {
+    background-color: #727272;
     min-height: 150px;
     border-radius: 5px;
     display: flex;
@@ -265,28 +327,58 @@ color: black;
 
 .save-footer {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
-
+#dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
 .notes-list {
 
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
 
 }
 
-.note.new {
-    background-color: #b8e0d2;
+#light .new-note {
+    background-color: #559cad;
     color: black;
     margin-top: 2em;
     margin-bottom: 2em;
+    min-height: 150px;
+    border-radius: 5px;
+    display: flex;
+    padding: 2em;
+    flex-direction: column;
+    justify-content: space-between;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+#dark .new-note {
+    background-color: rgb(218, 218, 218);
+    color: black;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    min-height: 150px;
+    border-radius: 5px;
+    display: flex;
+    padding: 2em;
+    flex-direction: column;
+    justify-content: space-between;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
-textarea {
+#light textarea {
     border: none;
     resize: none;
-    background-color: #b8e0d2;
+    background-color: #559cad;
+
+}
+#dark textarea {
+    border: none;
+    resize: none;
+    background-color: rgb(218, 218, 218);
 
 }
 
@@ -298,14 +390,15 @@ textarea {
 .text-placeholder {
     padding: 1em;
 }
-
+.text-placeholder::placeholder {
+color:black}
 
 textarea:focus {
     outline: none;
 }
 
 .save {
-    background-color: #809BCE;
+    background-color: white;
     border: none;
     border-radius: 10px;
 }

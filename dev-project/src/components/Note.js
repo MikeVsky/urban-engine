@@ -1,5 +1,5 @@
 import React from 'react'
-import { FiDelete } from 'react-icons/fi'
+import { TiDeleteOutline } from 'react-icons/ti'
 export default function Note({
   note,
   handleDelete}) {
@@ -11,8 +11,10 @@ export default function Note({
       <span>{note.text}</span>
       <div className='note-footer'>
         <small>{note.date} </small>
-
-          <FiDelete size="1.5em" onClick={() => handleDelete(note.id)}/>
+          <div className='note-delete-button'>
+          <TiDeleteOutline size="3em" color='white' onClick={() => handleDelete(note.id)}/>
+          </div>
+         
   
 
 

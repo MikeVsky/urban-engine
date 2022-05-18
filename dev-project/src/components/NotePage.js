@@ -17,7 +17,7 @@ export default function NotePage() {
 
   const [notes, setNotes] = useState([])
   document.title = "Notes"
-
+  let notesCount = notes.length
 
   useEffect(() => {
     const noteRef = collection(db, "notes")
@@ -42,8 +42,7 @@ export default function NotePage() {
     <div>
 
       <NavbarMain />
-      <Container className=" align-items-center "
-       >
+      <Container className=" align-items-center ">
         <AddNote />
       <div className='notes-list'>
       {notes.map((note) => (

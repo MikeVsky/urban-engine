@@ -2,7 +2,18 @@
 import React,{useState} from 'react'
 import app, {db} from '../firebase'
 import { collection, addDoc  } from 'firebase/firestore'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+const notifyNote = () => toast('You forgot about the note content', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  })
 
 export default function AddNote() {
     const[noteTitle, setNoteTitle] = useState('')
@@ -12,7 +23,7 @@ export default function AddNote() {
         e.preventDefault()
 
       
-            if(noteTitle!==''&& noteText!==''){
+            if(noteTitle!=='' && noteText!==''){
                 await addDoc(collection(db, "notes"),{
                     title: noteTitle,
                     text: noteText,
@@ -21,13 +32,16 @@ export default function AddNote() {
                 }      
                 )
             }
+           else {
+                notifyNote()
+            }
             setNoteTitle('')
             setNoteText('')
             }
             
       
   return (
-    <div className='note new'>
+    <div className='new-note'>
          <textarea
          className='title-placeholder'
          rows='1'
@@ -47,6 +61,7 @@ export default function AddNote() {
          <div className='save-footer'>
             <button className='save' onClick={handleSave}>Save</button>
          </div>
+         <ToastContainer />
          </div>
   )
 }

@@ -17,7 +17,24 @@ import NavbarMain from './NavbarMain'
 export default function TodoPage() {
 
   const [todos, setTodos] = useState([])
+  const [taskDone, setTaskDone] =useState(0)
   document.title = "To do"
+  let taskLeft = todos.filter(todo => !todo.completed).length
+
+  function SwitchCase() {
+    switch (taskLeft) {
+      case 0:
+        return ' '
+      case 1:
+        return 'Only one task to go'
+      default:
+        return `You have ${taskLeft} tasks left`
+    }
+  }
+
+  onSnapshot(doc(db, "users", app.auth().currentUser.uid), (doc) => {
+    setTaskDone(doc.get('totalTasks'))
+  });
 
   useEffect(() => {
     const todoRef = collection(db, "todos")
@@ -39,6 +56,11 @@ export default function TodoPage() {
   };
   const toggleComplete = async (todo) => {
     await updateDoc(doc(db, "todos", todo.id), { completed: !todo.completed });
+    if (!todo.completed){
+      await updateDoc(doc(db, "users", app.auth().currentUser.uid ), {totalTasks: taskDone+1})
+    }else {
+      await updateDoc(doc(db, "users", app.auth().currentUser.uid ), {totalTasks: taskDone-1})
+    }
   };
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "todos", id));
@@ -50,7 +72,8 @@ export default function TodoPage() {
         className="d-flex align-items-center justify-content-center"
         >
           <Card className='mt-5'>
-            <Card.Body className="shadow p-3 rounded">
+            <Card.Body className="shadow p-3 card-bg border-0"
+            style={{minWidth: "30vw"}}>
               <h2 className='h2-align'> What's to be done for today?</h2>
               <AddTodo />
               <div >
@@ -64,8 +87,8 @@ export default function TodoPage() {
                   />
                 ))}
               </div>
-              <div className="w-100 mt-3">
-                You have {todos.length} tasks
+              <div className="w-100 mt-3"> 
+              <SwitchCase value={taskLeft}/>
               </div>
             </Card.Body>
           </Card>

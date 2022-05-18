@@ -1,5 +1,4 @@
 
-import { set } from 'firebase/database';
 import React, { createContext, useState, useEffect } from 'react'
 
 export const ThemeContext = createContext();
@@ -14,7 +13,7 @@ export const ThemeProvider = ({ children }) => {
       localStorage.setItem('theme', 'light')
     } else 
     setTheme(localStorage.getItem('theme'))
-  }, []);
+  }, [theme]);
 
   
   const toggleTheme = () => {
