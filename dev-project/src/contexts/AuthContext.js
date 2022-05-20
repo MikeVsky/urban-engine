@@ -1,46 +1,45 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { auth } from  '../firebase'
+import { auth} from '../firebase'
 
 const AuthContext = React.createContext()
 
-export function useAuth(){
+export function useAuth() {
     return useContext(AuthContext)
 }
-export function AuthProvider({children}) {
+export function AuthProvider({ children }) {
 
     const [currentUser, setCurrentUser] = useState()
-    const [loading, setLoading] =useState(true)
+    const [loading, setLoading] = useState(true)
 
-    function signup(email, password){
+    function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password)
     }
-    function login(email, password){
-        return auth.signInWithEmailAndPassword(email,password)
+    function login(email, password) {
+        return auth.signInWithEmailAndPassword(email, password)
     }
 
-    function resetPassword(email){
+    function resetPassword(email) {
         return auth.sendPasswordResetEmail(email)
     }
-    function logout(){
-       return auth.signOut()
+    function logout() {
+        return auth.signOut()
     }
-
-    function updateEmail(email){
+    function updateEmail(email) {
         return currentUser.updateEmail(email)
     }
 
-    function updatePassword(password){
+    function updatePassword(password) {
         return currentUser.updatePassword(password)
     }
 
     useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-        setLoading(false)
-        setCurrentUser(user)
-    })
+        const unsub = auth.onAuthStateChanged(user => {
+            setLoading(false)
+            setCurrentUser(user)
+        })
 
-    return unsubscribe
-},[])
+        return unsub
+    }, [])
 
     const value = {
         currentUser,
@@ -52,9 +51,11 @@ export function AuthProvider({children}) {
         updatePassword
     }
 
-  return (
-    <AuthContext.Provider value={value}>
-        {!loading && children}
-    </AuthContext.Provider>
-  )
+       
+
+    return (
+        <AuthContext.Provider value={value}>
+            {!loading && children}
+        </AuthContext.Provider>
+    )
 }

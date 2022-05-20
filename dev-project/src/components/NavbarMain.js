@@ -1,29 +1,39 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Navbar, Nav} from "react-bootstrap"
+
 export default function NavbarMain() {
+  
+const date = new Date().toLocaleDateString('en-us', { weekday:"long", month:"long", day:"numeric"});
   return (
-    <div>
-     <Navbar bg="light" expand="lg">
-    <Navbar.Brand as={Link} to= "/">Study Valley</Navbar.Brand>
-    <Navbar.Toggle aria-controls="navbarScroll" />
-    <Navbar.Collapse id="navbarScroll">
+   <div>
+     <Navbar expand="lg" className='navbarbg container-fluid'>
+       
+    <Navbar.Brand as={Link} to= "/">
+      
+    <img src="logo-white.png" width="100" alt="website logo" className="d-inline-block align-middle ms-3"/>
+    </Navbar.Brand>
+  
+    <Navbar.Toggle aria-controls="navbarScroll" className='hamburger-toggle' />
+    <Navbar.Collapse id="navbarScroll" className="nav-text">
       <Nav
-        className="me-auto my-2 my-lg-0"
-        style={{ maxHeight: '100px' }}
-        navbarScroll
-      >
-        <Nav.Link as={Link} to= "/TodoPage"> To-Do</Nav.Link>
-        <Nav.Link as={Link} to="/Notes">Notes</Nav.Link>
-        <Nav.Link as={Link} to="/Pomodoro">Pomodoro</Nav.Link>
-        <Nav.Link as={Link} to="/Profile">Profile</Nav.Link>
+        className="ms-auto my-1 my-lg-0"
+        navbarScroll>
+           <div className='nav-text'>
+    
+    </div>
+        <Nav.Link className="date" disabled>{date}</Nav.Link>
+        <Nav.Link as={Link} to= "/TodoPage" className="nav-text"> To-Do</Nav.Link>
+        <Nav.Link as={Link} to="/Notes" className="nav-text">Notes</Nav.Link>
+        <Nav.Link as={Link} to="/Pomodoro" className="nav-text">Pomodoro</Nav.Link>
+        <Nav.Link as={Link} to="/Profile"className="nav-text">Profile</Nav.Link>
         
 
       </Nav>
       
     </Navbar.Collapse>
-    
 </Navbar>
-  </div>
+  </div> 
   )
 }
+
