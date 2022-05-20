@@ -52,7 +52,10 @@ border-color: white;
 }
 
 #light .profile-bg {
-    background-color: #bcd4e6;
+    box-shadow: 5px;
+}
+#dark .profile-bg{
+    background-color: #727272;
     box-shadow: 5px;
 }
 
@@ -61,16 +64,17 @@ border-color: white;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 }
+#dark .navbarbg {
+    background-color: #212124;
+    color: white;
+}
 
 #dark .card-bg{
     background-color: #727272;
         border-color: transparent;
 
 }
-#dark .navbarbg {
-    background-color: #212124;
-    color: white;
-}
+
 
 #light .input-bg {
     background-color: #b7d7f4;
@@ -215,8 +219,11 @@ height: 50%;
     padding-top: 1em;
 }
 
-.black-text{
+#light .profile-text{
     color: black;
+}
+#dark .profile-text{
+    color:white;
 }
 #light #add-todo input{
     padding: 0.5em;
@@ -273,18 +280,21 @@ color: black;
 .time-buttons {
     margin-top: 1em;
     display: flex;
-
+    padding: 1em;
     border-radius: 10px;
-
     justify-content: space-between;
 }
 
 .time-buttons button {
     border: none;
     border-radius: 10px;
+    padding: 0.5em;
     width: 5em;
-    height: 2em;
     background-color:#6eb8cf ;
+    transition: 200ms;
+}
+.time-buttons button:hover {
+   
 }
 
 .dark-toggle {
@@ -397,7 +407,7 @@ textarea:focus {
     outline: none;
 }
 
-.save {
+.btn-save {
     background-color: white;
     border: none;
     border-radius: 10px;
