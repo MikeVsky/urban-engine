@@ -1,4 +1,3 @@
-
 import React,{useState} from 'react'
 import app, {db} from '../firebase'
 import { collection, addDoc  } from 'firebase/firestore'
@@ -19,6 +18,7 @@ export default function AddNote() {
     const[noteTitle, setNoteTitle] = useState('')
     const[noteText, setNoteText] = useState('')
     const date = new Date()
+    
     const handleSave =async (e) =>{
         e.preventDefault()
 
@@ -28,16 +28,16 @@ export default function AddNote() {
                     title: noteTitle,
                     text: noteText,
                     date: date.toLocaleDateString(),
+                    time: date.toLocaleTimeString(),
                     uid: app.auth().currentUser.uid 
-                }      
-                )
+                })
             }
            else {
                 notifyNote()
             }
             setNoteTitle('')
             setNoteText('')
-            }
+    }
             
       
   return (
@@ -54,12 +54,12 @@ export default function AddNote() {
           className='text-placeholder'
          rows='8'
          cols='10'
-         placeholder='Type something  to add a note...'
+         placeholder='Type something  to add note...'
          onChange={(e) =>setNoteText(e.target.value)}
          value={noteText}
          ></textarea>
          <div className='save-footer'>
-            <button className='save' onClick={handleSave}>Save</button>
+            <button className='btn-save' onClick={handleSave}>Save</button>
          </div>
          <ToastContainer />
          </div>

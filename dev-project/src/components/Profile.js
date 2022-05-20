@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Card, Container, Button } from 'react-bootstrap'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
-import app, { db, storage } from '../firebase'
+import app, { db } from '../firebase'
 import NavbarMain from './NavbarMain'
 import {
   collection,
@@ -14,7 +14,7 @@ import {
 
 export default function Profile() {
   document.title = "Profile"
-  const { currentUser, logout, upload } = useAuth()
+  const { currentUser, logout} = useAuth()
   const navigate = useNavigate()
   const userRef = collection(db, 'users')
   const q = query(userRef, where("uid", "==", app.auth().currentUser.uid))
@@ -46,7 +46,8 @@ export default function Profile() {
   });
 
   const formatTime = (time) => {
-    let hours = Math.floor(time / 3600)
+    
+    let hours = Math.floor(time / 3600 % 24)
     let minutes = Math.floor(time / 60 % 60)
     return (
       (hours < 10 ? "0" + hours : hours)+ " hours and " + (minutes < 10 ? "0" + minutes : minutes) + " minutes"
@@ -65,10 +66,10 @@ export default function Profile() {
         className="d-flex align-items-center justify-content-center mt-5">
         <div className="w-100" style={{ maxWidth: "400px" }}>
           <Card>
-            <Card.Body className="shadow p-3 ">
-              <div className='black-text'>
+            <Card.Body className="shadow p-3 profile-bg">
+              <div className='profile-text '>
                 <h1 className="text-center mb-4">Profile</h1>
-                <h3>User details</h3>
+                <h3>Details</h3>
                 <strong>Name: </strong>{userName}
                 <br />
                 <strong>Email: </strong>{currentUser.email}
@@ -76,7 +77,7 @@ export default function Profile() {
                 <strong>Account created: </strong>{dateAdded}
                 <br />
                 <hr />
-                <h3>User Statistics</h3>
+                <h3>Statistics</h3>
                 <strong>Total tasks done: </strong>{totalTasks}
                 <br />
                 <strong>Successful focus sessions: </strong>{sessionCount}

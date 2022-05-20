@@ -19,6 +19,7 @@ export default function TodoPage() {
   const [todos, setTodos] = useState([])
   const [taskDone, setTaskDone] =useState(0)
   document.title = "To do"
+
   let taskLeft = todos.filter(todo => !todo.completed).length
 
   function SwitchCase() {
@@ -37,8 +38,10 @@ export default function TodoPage() {
   });
 
   useEffect(() => {
+
     const todoRef = collection(db, "todos")
     const q = query(todoRef, where("uid", "==", app.auth().currentUser.uid))
+
     const unsub = onSnapshot(q, (querySnapshot) => {
       let todosArray = [];
 

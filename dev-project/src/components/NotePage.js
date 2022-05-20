@@ -17,7 +17,6 @@ export default function NotePage() {
 
   const [notes, setNotes] = useState([])
   document.title = "Notes"
-  let notesCount = notes.length
 
   useEffect(() => {
     const noteRef = collection(db, "notes")

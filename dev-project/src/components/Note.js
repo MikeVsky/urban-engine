@@ -10,7 +10,7 @@ export default function Note({
       <h3>{note.title}</h3>
       <span>{note.text}</span>
       <div className='note-footer'>
-        <small>{note.date} </small>
+        <small><hr/>{note.date} {note.time} </small>
           <div className='note-delete-button'>
           <TiDeleteOutline size="3em" color='white' onClick={() => handleDelete(note.id)}/>
           </div>

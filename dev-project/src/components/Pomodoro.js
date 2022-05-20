@@ -16,28 +16,17 @@ export default function Pomodoro() {
 
   const [displayTime, setDisplayTime] = useState(3)
   const [totalTime, setTotalTime] = useState(3)
-  const [shortBrake, setShortBrake] = useState(5)
+  const [shortBreak, setShortBreak] = useState(5)
   const [sessionTime, setSessionTime] = useState(3)
   const [timerOn, setTimerOn] = useState(false)
   const [totalScore, setTotalScore] = useState(0)
   const [totalLevel, setTotalLevel] = useState(0)
   const [wasStopped, setWasStopped] = useState(false)
-  const [onBrake, setOnBrake] = useState(false)
+  const [onBreak, setOnBreak] = useState(false)
   const value = displayTime / totalTime
   const [sessionCount, setSessionCount] = useState(0)
   const [barColor, setBarColor] = useState('62, 152, 199')
-  let sessionType = onBrake !== true ? 'Focus' : 'Brake'
-
-  /* window.onfocus = function (ev) {
-     handleStart()
- };
- window.onblur = function (ev) {
-   if (timerOn){
-     document.title = "Timer has been stoped"
-     handleStop()
-   }
-  
- };*/
+  let sessionType = onBreak !== true ? 'Focus' : 'Break'
 
 
   useEffect(() => {
@@ -76,7 +65,7 @@ export default function Pomodoro() {
     progress: undefined,
   })
 
-    const formatTime = (time) => {
+  const formatTime = (time) => {
     let minutes = Math.floor(time / 60)
     let seconds = time % 60
     return (
@@ -87,11 +76,11 @@ export default function Pomodoro() {
   function handleSession() {
     if (!timerOn) {
       setWasStopped(false)
-      setDisplayTime(3)
-      setSessionTime(3)
-      setTotalTime(3)
+      setDisplayTime(25 * 60)
+      setSessionTime(25 * 60)
+      setTotalTime(25 * 60)
       setBarColor('62, 152, 199')
-      setOnBrake(false)
+      setOnBreak(false)
 
     }
 
@@ -100,11 +89,11 @@ export default function Pomodoro() {
   function handleShort() {
     if (!timerOn) {
       setWasStopped(false)
-      setDisplayTime(5)
-      setShortBrake(5)
-      setTotalTime(5)
+      setDisplayTime(4)
+      setShortBreak(4)
+      setTotalTime(4)
       setBarColor('184, 224, 210')
-      setOnBrake(true)
+      setOnBreak(true)
     }
 
   }
@@ -115,7 +104,7 @@ export default function Pomodoro() {
       setDisplayTime(15 * 60)
       setTotalTime(15 * 60)
       setBarColor('184, 224, 210')
-      setOnBrake(true)
+      setOnBreak(true)
     }
   }
   function handleStart() {
@@ -131,24 +120,26 @@ export default function Pomodoro() {
         if (date > nextDate) {
           setDisplayTime((prev) => {
 
-            if (prev <= 1 && !onBrake) {
-              if (sessionTime >=2 && !wasStopped){
+            if (prev <= 1 && !onBreak) {
+              if (sessionTime >= 2 && !wasStopped) {
                 updateScore()
                 updateLevel()
               }
-              clearInterval(localStorage.getItem('interval-id'))
-              setOnBrake(true)
+              clearInterval(localStorage.getItem('intervalId'))
+              setOnBreak(true)
               setTimerOn(false)
               handleShort()
-              updateDoc(doc(db, "users", app.auth().currentUser.uid ), {timeSession: sessionCount+1 })
+              updateDoc(doc(db, "users", app.auth().currentUser.uid), { timeSession: sessionCount + 1 })
 
             }
-            if ((prev <= 1 && onBrake)) {
-              setOnBrake(false)
-              clearInterval(localStorage.getItem('interval-id'))
+            if (prev <= 1 && onBreak) {
+
+              setOnBreak(false)
+              clearInterval(localStorage.getItem('intervalId'))
               setTimerOn(false)
               handleSession()
             }
+
             window.document.title = formatTime(prev - 1)
             return prev - 1
           })
@@ -156,13 +147,13 @@ export default function Pomodoro() {
         }
       }, 1000)
       localStorage.clear();
-      localStorage.setItem('interval-id', interval)
+      localStorage.setItem('intervalId', interval)
 
     }
   }
   function handleStop() {
     setWasStopped(true)
-    clearInterval(localStorage.getItem('interval-id'))
+    clearInterval(localStorage.getItem('intervalId'))
     setTimerOn(false)
   }
 
@@ -170,11 +161,11 @@ export default function Pomodoro() {
     setDisplayTime(3)
     setSessionTime(3)
     setTotalTime(3)
-    setShortBrake(5 * 60)
-    clearInterval(localStorage.getItem('interval-id'))
+    setShortBreak(5 * 60)
+    clearInterval(localStorage.getItem('intervalId'))
     setTimerOn(false)
     setWasStopped(false)
-    setOnBrake(false)
+    setOnBreak(false)
     setBarColor('62, 152, 199')
   }
 
@@ -219,9 +210,9 @@ export default function Pomodoro() {
       <Container className="d-flex align-items-center justify-content-center mt-5">
         <div className='time-display'>
           <div className='time-buttons'>
-            <button onClick={handleSession}>Work</button>
-            <button onClick={handleShort}>Short</button>
-            <button onClick={handleLong}>Long</button>
+            <button onClick={handleSession} aria-label="Focus session">Focus</button>
+            <button onClick={handleShort} aria-label="short break">Short</button>
+            <button onClick={handleLong} aria-label="long break">Long</button>
           </div>
 
           <strong className='text-center mt-3 mb-3'>Plan your time wisely</strong>
@@ -235,10 +226,9 @@ export default function Pomodoro() {
           </CircularProgressbarWithChildren>
           <div className='time-buttons mt-4'>
             <button onClick={handleStart} aria-label="Start timer">Start</button>
-            <button onClick={handleStop}>Stop</button>
-            <button onClick={handleReset}>Restart</button>
-            <br/>
-
+            <button onClick={handleStop} aria-label="Stop timer">Stop</button>
+            <button onClick={handleReset} aria-label="Restart timer">Restart</button>
+            <br />
           </div>
           <div className='text-center mt-4 score'> <SwitchCase value={totalScore} /></div>
 
